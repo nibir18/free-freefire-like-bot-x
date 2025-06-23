@@ -109,6 +109,7 @@ class LikeCommands(commands.Cog):
             await ctx.reply("Invalid UID. It must contain only numbers and be at least 6 characters long.", mention_author=False, ephemeral=is_slash)
             return
 
+
         try:
             async with ctx.typing():
                 async with self.session.get(f"{self.api_host}/like?uid={uid}", headers=self.headers) as response:
@@ -122,30 +123,27 @@ class LikeCommands(commands.Cog):
 
                     data = await response.json()
                     embed = discord.Embed(
-                        title="🔥 QUANTUM CORPORATION FF LIKE",
+                        title="FREE FIRE LIKE",
                         color=0x2ECC71 if data.get("status") == 1 else 0xE74C3C,
                         timestamp=datetime.now()
                     )
 
                     if data.get("status") == 1:
                         embed.description = (
-                            f"🎮 **PLAYER PROFILE**\n"
-                            f"> 👤 **Name:** `{data.get('player', 'Unknown')}`\n"
-                            f"> 🆔 **UID:** `{uid}`\n\n"
-                            f"📊 **LIKE STATUS**\n"
-                            f"> ✅ **Added:** `+{data.get('likes_added', 0)}`\n"
-                            f"> 🕓 **Before:** `{data.get('likes_before', 'N/A')}`\n"
-                            f"> 🔺 **After:** `{data.get('likes_after', 'N/A')}`\n"
+                            f"\n"
+                            f"┌  ACCOUNT\n"
+                            f"├─ NICKNAME: {data.get('player', 'Unknown')}\n"
+                            f"├─ UID: {uid}\n"
+                            f"└─ RESULT:\n"
+                            f"   ├─ ADDED: +{data.get('likes_added', 0)}\n"
+                            f"   ├─ BEFORE: {data.get('likes_before', 'N/A')}\n"
+                            f"   └─ AFTER: {data.get('likes_after', 'N/A')}\n"
                         )
                     else:
-                        embed.description = (
-                            "🚫 **Max Likes Reached**\n"
-                            "> This UID has already received the **maximum number of likes** today.\n"
-                            "> Try again **tomorrow** or check another UID."
-                        )
+                        embed.description = "\n┌MAX LIKES\n└─This UID has already received the maximum likes today.\n"
 
-                    embed.set_footer(text="Owned by Nibir")
-                    embed.description += "\n\n🔗 **Support:** https://discord.gg/CAnmCAJPqB"
+                    embed.set_footer(text="DEVELOPED BY THUG")
+                    embed.description += "\n🔗 JOIN : https://discord.gg/awPm5B3QFg"
                     await ctx.send(embed=embed, mention_author=True, ephemeral=is_slash)
 
         except asyncio.TimeoutError:
