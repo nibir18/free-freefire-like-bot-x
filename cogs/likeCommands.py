@@ -128,22 +128,23 @@ class LikeCommands(commands.Cog):
                         timestamp=datetime.now()
                     )
 
+
+
                     if data.get("status") == 1:
-                        embed.description = (
-                            f"\n"
-                            f"┌  ACCOUNT\n"
-                            f"├─ NICKNAME: {data.get('player', 'Unknown')}\n"
-                            f"├─ UID: {uid}\n"
-                            f"└─ RESULT:\n"
-                            f"   ├─ ADDED: +{data.get('likes_added', 0)}\n"
-                            f"   ├─ BEFORE: {data.get('likes_before', 'N/A')}\n"
-                            f"   └─ AFTER: {data.get('likes_after', 'N/A')}\n"
+                         embed.description = (
+                            f"🎮 **PLAYER PROFILE**\n"
+                            f"> 👤 **Name:** `{data.get('player', 'Unknown')}`\n"
+                            f"> 🆔 **UID:** `{uid}`\n\n"
+                            f"📊 **LIKE STATUS**\n"
+                            f"> 👍 **Likes Added:** `+{data.get('likes_added', 0)}`\n"
+                            f"> 📥 **Before:** `{data.get('likes_before', 'N/A')}`\n"
+                            f"> 📈 **After:** `{data.get('likes_after', 'N/A')}`\n"
                         )
                     else:
-                        embed.description = "\n┌MAX LIKES\n└─This UID has already received the maximum likes today.\n"
+                        embed.description = " > This UID has already received the **maximum number of likes** today.\n "
 
-                    embed.set_footer(text="DEVELOPED BY THUG")
-                    embed.description += "\n🔗 JOIN : https://discord.gg/awPm5B3QFg"
+                    embed.set_footer(text="Owned by Nibir")
+                    embed.description += "\n🔗 JOIN : https://discord.gg/CAnmCAJPqB"
                     await ctx.send(embed=embed, mention_author=True, ephemeral=is_slash)
 
         except asyncio.TimeoutError:
