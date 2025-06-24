@@ -130,6 +130,7 @@ class Seemu(commands.Bot):
         await ctx.send("⚠️ An unexpected error occurred. [1214]", ephemeral=True)
 
 
+
 if __name__ == "__main__":
     try:
         intents = discord.Intents.all()
